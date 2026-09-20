@@ -9,8 +9,8 @@ const copy = readFileSync(join(root, 'src', 'extraEntityCopy.ts'), 'utf8')
 const baseIds = [...data.matchAll(/e\(\{ id: '([^']+)'/g)].map((match) => match[1])
 const extraIds = [...extra.matchAll(/x\('([^']+)'/g)].map((match) => match[1])
 const ids = [...baseIds, ...extraIds]
-const failures = []
-const addFailure = (message) => failures.push(message)
+const failures: string[] = []
+const addFailure = (message: string) => failures.push(message)
 
 if (ids.length !== 155) addFailure(`expected 155 catalog entities, found ${ids.length}`)
 const duplicateIds = ids.filter((id, index) => ids.indexOf(id) !== index)
@@ -43,3 +43,5 @@ if (failures.length) {
 }
 
 console.log(`data verification passed (${ids.length} unique entities; ${timelineRefs.length} timeline and ${relationRefs.length} relationship references).`)
+
+

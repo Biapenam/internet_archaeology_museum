@@ -7,9 +7,10 @@
     "dev": "vite",
     "build": "tsc -b && vite build",
     "preview": "vite preview",
-    "verify:data": "node scripts/verify-data.mjs",
-    "verify:runtime": "node scripts/verify-runtime.mjs",
-    "verify:dist": "node scripts/verify-dist.mjs"
+    "verify:data": "tsx scripts/verify-data.ts",
+    "verify:runtime": "tsx scripts/verify-runtime.ts",
+    "verify:dist": "tsx scripts/verify-dist.ts",
+    "typecheck:scripts": "tsc -p tsconfig.scripts.json --noEmit"
   },
   "dependencies": {
     "@vitejs/plugin-react": "6.1.1",
@@ -20,7 +21,9 @@
     "vite": "8.3.0"
   },
   "devDependencies": {
+    "@types/node": "^26.6.2",
     "@types/react": "^19.3.0",
-    "@types/react-dom": "^19.3.0"
+    "@types/react-dom": "^19.3.0",
+    "tsx": "^4.20.6"
   }
 }
