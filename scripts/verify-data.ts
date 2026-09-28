@@ -1,5 +1,7 @@
 import { readFileSync } from 'node:fs'
 import { join, resolve } from 'node:path'
+import { timelineYears } from '../src/data.js'
+import { userStatistics } from '../src/userStatistics.js'
 
 const root = resolve(import.meta.dirname, '..')
 const data = readFileSync(join(root, 'src', 'data.ts'), 'utf8')
@@ -36,6 +38,12 @@ const genericCopyPatterns = [
   '它帮助我们理解即时通讯如何改变人们访问、表达、交流或使用互联网的方式',
 ]
 for (const phrase of genericCopyPatterns) if (copy.includes(phrase)) addFailure(`generic Chinese copy template remains: ${phrase}`)
+
+for (const node of timelineYears) {
+  const statistic = userStatistics[node.year]
+  if (!statistic) addFailure(`missing user statistic for ${node.year}`)
+  else if (statistic.method !== 'unavailable' && (!statistic.sources.length || statistic.observationYear > node.year)) addFailure(`invalid user statistic source or observation year for ${node.year}`)
+}
 
 if (failures.length) {
   console.error(`data verification failed:\n- ${[...new Set(failures)].join('\n- ')}`)

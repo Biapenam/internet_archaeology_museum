@@ -6,10 +6,10 @@ const wikipediaSlugs: Record<string, string> = {
   'palm-os': 'Palm_OS', seamonkey: 'SeaMonkey', 'win98': 'Windows_98', 'win7': 'Windows_7', 'win8': 'Windows_8',
 }
 
-const x = (id: string, name: string, category: string, start: number, description: string, whyItMattered: string, region = 'Global', color = '#7da8c5', tags: string[] = []) : Entity => {
+const x = (id: string, name: string, category: string, start: number, description: string, whyItMattered: string, region?: string, color = '#7da8c5', tags: string[] = []) : Entity => {
   const slug = wikipediaSlugs[id] ?? name.replace(/ /g, '_')
   return {
-  id, name, category, shortLabel: name, symbol: name.slice(0, 1), founded: String(start), status: 'historical', activeYears: { start }, description, whyItMattered, region, color, tags: [category.toLowerCase(), region.toLowerCase(), ...tags], sources: [{ title: 'Wikipedia', url: `https://en.wikipedia.org/wiki/${encodeURIComponent(slug)}` }], links: { wikipedia: `https://en.wikipedia.org/wiki/${encodeURIComponent(slug)}` },
+  id, name, category, shortLabel: name, symbol: name.slice(0, 1), founded: String(start), status: 'historical', activeYears: { start }, description, whyItMattered, ...(region ? { region } : {}), color, tags: [category.toLowerCase(), ...(region ? [region.toLowerCase()] : []), ...tags], sources: [{ title: 'Wikipedia', url: `https://en.wikipedia.org/wiki/${encodeURIComponent(slug)}` }], links: { wikipedia: `https://en.wikipedia.org/wiki/${encodeURIComponent(slug)}` },
   }
 }
 

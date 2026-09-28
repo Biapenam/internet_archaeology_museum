@@ -11,7 +11,7 @@ export function ModalShell({ label, onDismiss, children }: Props) {
     returnFocus.current = document.activeElement instanceof HTMLElement ? document.activeElement : null
     const previousOverflow = document.body.style.overflow
     document.body.style.overflow = 'hidden'
-    const background = [...document.querySelectorAll<HTMLElement>('main, header, footer, .play-dock')]
+    const background = [...document.querySelectorAll<HTMLElement>('main, header, footer, .play-dock, .dock-restore')]
     const previous = background.map((node) => node.inert)
     background.forEach((node) => { node.inert = true })
     ref.current?.querySelector<HTMLElement>('button, a, input, select, textarea, [tabindex]:not([tabindex="-1"])')?.focus()
@@ -32,5 +32,8 @@ export function ModalShell({ label, onDismiss, children }: Props) {
       returnFocus.current?.focus()
     }
   }, [])
+  useEffect(() => {
+    ref.current?.querySelector<HTMLElement>('h2')?.focus({ preventScroll: true })
+  }, [label])
   return <div className="modal-backdrop" onClick={onDismiss}><div ref={ref} role="dialog" aria-modal="true" aria-label={label}>{children}</div></div>
 }

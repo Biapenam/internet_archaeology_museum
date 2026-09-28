@@ -23,7 +23,7 @@ export type Entity = {
 }
 
 export type Source = { title: string; url: string }
-export type HistoricalMilestone = { year: number; title: string; detail: string }
+export type HistoricalMilestone = { year: number; title: string; detail: string; source?: Source }
 
 export type HistoricalEvent = {
   id: string
@@ -35,13 +35,13 @@ export type HistoricalEvent = {
   entities: string[]
   importance: 'high' | 'medium' | 'low'
   sources: Source[]
+  primaryEntityId?: string
 }
 
 export type TimelineYear = {
   year: number
   title: string
   description: string
-  internetUsers: string
   popularBrowser: string
   majorPlatform: string
   majorTrend: string

@@ -6,3 +6,4 @@ qa-artifacts/
 !.env.example
 npm-debug.log*
 *.tsbuildinfo
+*.tgz

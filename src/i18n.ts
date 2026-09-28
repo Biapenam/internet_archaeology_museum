@@ -73,7 +73,7 @@ export const ui = {
     timelineOf: 'Timeline of',
     competitors: 'Competitors',
     importantDates: 'Important dates',
-    origin: 'Origin',
+    origin: 'Catalog region',
     currentStatus: 'Current status',
     exhibitNotFound: 'Exhibit not found',
     trySearch: 'Try another archive search.',
@@ -148,7 +148,7 @@ export const ui = {
     timelineOf: '历史时间线',
     competitors: '竞争者',
     importantDates: '重要日期',
-    origin: '起源地',
+    origin: '馆藏地区标签',
     currentStatus: '当前状态',
     exhibitNotFound: '找不到这件展品',
     trySearch: '试试搜索其他档案。',
@@ -244,7 +244,7 @@ const yearCopy: Record<number, Pick<TimelineYear, 'title' | 'description' | 'pop
 const eventCopy: Record<number, TimelineYear['events']> = {
   1990: [{ date: '1990 年 12 月', title: '第一台 Web 服务器在 CERN 运行', detail: '到 1990 年圣诞节，CERN 已运行第一台服务器和浏览器；世界第一个公开网站随后于 1991 年出现。' }],
   1993: [{ date: '1993 年 4 月', title: 'Mosaic 发布', detail: '图形化浏览器让内嵌图片变得自然。' }],
-  1995: [{ date: '1995 年 8 月', title: 'Windows 95 发布', detail: '开始菜单和拨号网络把新的桌面带进数百万个家庭。' }],
+  1995: [{ date: '1995 年 8 月 24 日', title: 'Windows 95 发布', detail: '开始菜单和拨号网络把新的桌面带进数百万个家庭。' }],
   1997: [{ date: '1997 年 5 月', title: 'AIM 出现', detail: '好友列表让“在线”成为一种可见的社交状态。' }],
   1999: [{ date: '1999 年', title: 'Blogger 让发布更容易', detail: '托管式博客工具降低了持续发布个人网站的技术门槛。' }],
   2001: [{ date: '2001 年 1 月 15 日', title: 'Wikipedia 上线', detail: '第一版 Wikipedia 作为协作编辑的在线百科全书开放。' }],
@@ -252,7 +252,7 @@ const eventCopy: Record<number, TimelineYear['events']> = {
   2005: [{ date: '2005 年 2 月', title: 'YouTube 成立', detail: '一个简单的上传按钮指向了新的广播媒介。' }],
   2007: [{ date: '2007 年 6 月 29 日', title: 'iPhone 发售', detail: '苹果在美国开售第一代 iPhone，把电话、iPod 和互联网设备合为一体。' }],
   2010: [{ date: '2010 年 10 月', title: 'Instagram 上线', detail: '滤镜方形照片让手机相机成为一种社交单位。' }],
-  2012: [{ date: '2012 年 4 月', title: 'Facebook 宣布收购 Instagram', detail: 'Facebook 宣布收购这款照片应用，交易完成仍需满足相关条件。' }],
+  2012: [{ date: '2012 年 4 月 9 日', title: 'Facebook 宣布收购 Instagram', detail: 'Facebook 宣布收购这款照片应用，交易完成仍需满足相关条件。' }],
   2015: [{ date: '2015 年', title: 'Discord 上线', detail: '社区聊天找到了论坛、群聊和语音房间之间的位置。' }],
   2018: [{ date: '2018 年', title: '短视频接管注意力', detail: '滑动成为发现文化的新方式。' }],
   2020: [{ date: '2020 年', title: '网络成为生命线', detail: '视频通话和聊天空间在全球范围吸收了日常生活。' }],
@@ -268,14 +268,15 @@ const milestoneCopy: Record<string, HistoricalMilestone[]> = {
   youtube: [{ year: 2005, title: '成立', detail: '简单的上传流程指向新的广播媒介。' }, { year: 2006, title: 'Google 收购', detail: 'YouTube 加入 Google 并扩大基础设施。' }, { year: 2010, title: '创作者时代', detail: '频道、订阅和推荐成为新的职业路径。' }],
   chatgpt: [{ year: 2022, title: '公开发布', detail: '对话式界面把生成式人工智能带给大众。' }, { year: 2023, title: '多模态转向', detail: '文本、图像和工具调用开始汇合。' }],
   netscape: [{ year: 1994, title: '成立', detail: 'Netscape 把快速图形浏览器带到公共网络。' }, { year: 1995, title: '浏览器大战', detail: '浏览器成为网络竞争的战略中心。' }],
-  iphone: [{ year: 2007, title: '发布', detail: '触控电脑让互联网变得便携。' }, { year: 2008, title: 'App Store', detail: '第三方应用把手机变成平台。' }],
+  win95: [{ year: 1995, title: '发布', detail: 'Windows 95 引入“开始”按钮、任务栏和桌面快捷方式。' }, { year: 1996, title: '上网工具包', detail: 'Microsoft 将 Internet Explorer Starter Kit 加入 Windows 95 零售包装。' }, { year: 1998, title: '后续版本', detail: 'Windows 98 发布，Windows 桌面进入下一版本。' }],
+  iphone: [{ year: 2007, title: '公布', detail: 'Apple 将 iPhone 介绍为电话、宽屏 iPod 和互联网设备。' }, { year: 2007, title: '首次销售', detail: '初代 iPhone 于 6 月 29 日在美国开始销售。' }, { year: 2008, title: 'App Store', detail: 'iPhone 2.0 更新带来第三方应用和 App Store。' }],
 }
 
 export function localizeEntity(entity: Entity, language: Language): Entity {
   if (language === 'en') return entity
   const copy = entityCopy[entity.id] ?? extraEntityCopy[entity.id] ?? {}
   const category = copy.category ?? categoryCopy[entity.category] ?? entity.category
-  return { ...entity, ...copy, category, description: copy.description ?? entity.description, whyItMattered: copy.whyItMattered ?? entity.whyItMattered, milestones: milestoneCopy[entity.id] ?? entity.milestones }
+  return { ...entity, ...copy, category, description: copy.description ?? entity.description, whyItMattered: copy.whyItMattered ?? entity.whyItMattered, milestones: milestoneCopy[entity.id]?.map((item, index) => ({ ...item, source: entity.milestones?.[index]?.source })) ?? entity.milestones }
 }
 
 export function localizeEra(era: Era, language: Language): Era {

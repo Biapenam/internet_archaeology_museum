@@ -8,24 +8,25 @@ Internet Archaeology Museum is an open-source, static-first web experience for w
 
 ## Features
 
-- A keyboard-friendly timeline from 1990 to 2026 with play, pause, and speed controls
+- A keyboard-friendly timeline from 1990 to 2026, with 16 documented archive nodes, direct year selection, and node-by-node playback
 - Era chapters: Early Web, Browser Wars, Web 2.0, Mobile Internet, Platform Era, Pandemic Internet, and AI Internet
 - 155 museum artifacts with concise historical context and “Why it mattered” notes
-- Search the archive and open related artifacts
-- Surprise Me discovery flow and a static “On This Day” logbook
+- Shared bilingual search with common Chinese aliases, keyboard selection, and clear empty results
+- Separate whole-museum and current-archive random discovery; an “On This Day” logbook with exact-date matches and labeled recommendations
 - English / Simplified Chinese interface toggle with persisted language preference
-- Full catalog filtering by category with batched loading for long lists
-- Shareable year and exhibit links (for example, `?year=2005&exhibit=youtube`)
+- Full catalog filtering by category, recorded region, featured start decade, and keyword, with batched loading for long lists
+- Shareable year, exhibit, and comparison links (for example, `?year=2005&exhibit=youtube`)
+- Local saved-artifact list and an exhibit-specific correction link
 - Museum rooms for each era, category browsing, major-event cards, Internet Graph, Internet Stack, and Then vs Now comparison
 - Dark and light themes with system-aware default
 - Entity field notes with relationship links, entity timelines, source links, and Wayback Machine shortcuts
 - Responsive layout for desktop, tablet, and mobile
 - Reduced-motion support, visible focus states, semantic controls, and accessible labels
-- No historical website screenshots are fabricated; exhibit cards are clearly labeled visual reconstructions
+- No historical website screenshots are fabricated; cards use symbols and text
 
 ## Screenshots
 
-The first viewport is the exhibition floor: the year, timeline, current era, and a snapshot of the web are visible together. Run the local preview to explore the timeline and open an artifact field note.
+The first viewport introduces the museum and offers direct routes into the timeline, full catalog, and a Windows 95 field note. The timeline and archive snapshot follow below. Years without a dedicated archive explicitly identify the earlier archive used as a reference. Historical user estimates now show ITU or World Bank sources, methods, and verification dates; some exhibit status and region details still need individual source verification.
 
 ## Tech stack
 
@@ -64,11 +65,28 @@ npm run verify:runtime
 npm run verify:dist
 ```
 
+## Run with npx
+
+Run directly from the public GitHub repository (Node.js 20.19+ and Git are required):
+
+```bash
+npx --yes --package=github:Biapenam/internet-archaeology-museum internet-archaeology-museum
+```
+
+The Git installation builds the static site automatically. To build a local npm package instead:
+
+```bash
+npm pack
+npx --yes --package ./internet-archaeology-museum-0.1.0.tgz internet-archaeology-museum
+```
+
+The command starts a local server at `http://127.0.0.1:4173/` and opens your browser. Use `--port 4182` to choose a port or `--no-open` to keep the browser closed. Press Ctrl+C to stop it. GitHub installation does not require publishing to the npm registry. The shorter command `npx internet-archaeology-museum` requires a separate npm publication.
+
 `dist/` is a deployable static artifact. The Vite base is relative, so the build works at a domain root and at a project sub-path such as GitHub Pages. Upload the contents of `dist/` to any static host (GitHub Pages, Vercel, Netlify, or Cloudflare Pages); no server process is needed. This repository has not been deployed by the maintainers, so it does not have a live demo URL. If a host does not serve `index.html` for the root request, configure its normal static index behavior. The experience uses hash navigation and does not require an SPA rewrite rule.
 
 ## Data sources
 
-The first edition keeps historical records in `src/data.ts` and `src/extraEntities.ts` so the site works without an API. Exhibit links point to official sites or Wikipedia reference pages for further reading. User counts are intentionally approximate and labeled as estimates. The visual language is a reconstruction and does not represent an official historical screenshot of any product. Source links are outbound references and can change independently.
+Historical records live in `src/data.ts` and `src/extraEntities.ts` so the site works without an API. `src/userStatistics.ts` gives each archive node an ITU estimate or a rounded World Bank internet-use percentage × population calculation, with observation year, method, sources, and verification date. The 2026 node displays ITU's 2025 estimate. Exhibit links point to official sites or Wikipedia reference pages for further reading; many catalog status and region fields still need individual primary-source review. The visual language is a reconstruction and does not represent an official historical screenshot of any product. Source links are outbound references and can change independently.
 
 Contributions that improve dates, sourcing, regional context, accessibility, or the writing are welcome. Please keep additions concise and include a source link for important factual claims.
 

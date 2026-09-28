@@ -1,8 +1,29 @@
 {
   "name": "internet-archaeology-museum",
-  "private": true,
   "version": "0.1.0",
+  "description": "Explore the history of the internet in a local interactive museum.",
+  "license": "MIT",
   "type": "module",
+  "bin": {
+    "internet-archaeology-museum": "bin/internet-archaeology-museum.mjs"
+  },
+  "files": [
+    "bin/",
+    "dist/",
+    "LICENSE",
+    "README.md",
+    "README.zh-CN.md"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Biapenam/internet-archaeology-museum.git"
+  },
+  "homepage": "https://github.com/Biapenam/internet-archaeology-museum#readme",
+  "bugs": "https://github.com/Biapenam/internet-archaeology-museum/issues",
+  "keywords": ["internet-history", "museum", "web-history", "interactive"],
+  "engines": {
+    "node": ">=20.19.0"
+  },
   "scripts": {
     "dev": "vite",
     "build": "tsc -b && vite build",
@@ -10,17 +31,16 @@
     "verify:data": "tsx scripts/verify-data.ts",
     "verify:runtime": "tsx scripts/verify-runtime.ts",
     "verify:dist": "tsx scripts/verify-dist.ts",
-    "typecheck:scripts": "tsc -p tsconfig.scripts.json --noEmit"
+    "typecheck:scripts": "tsc -p tsconfig.scripts.json --noEmit",
+    "prepare": "npm run build && npm run verify:dist"
   },
-  "dependencies": {
+  "devDependencies": {
     "@vitejs/plugin-react": "6.1.1",
     "lucide-react": "1.47.0",
     "react": "19.3.0",
     "react-dom": "19.3.0",
     "typescript": "7.0.2",
-    "vite": "8.3.0"
-  },
-  "devDependencies": {
+    "vite": "8.3.0",
     "@types/node": "^26.6.2",
     "@types/react": "^19.3.0",
     "@types/react-dom": "^19.3.0",
