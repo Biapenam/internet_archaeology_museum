@@ -70,7 +70,7 @@ npm run verify:dist
 Run directly from the public GitHub repository (Node.js 20.19+ and Git are required):
 
 ```bash
-npx --yes --package=github:Biapenam/internet-archaeology-museum internet-archaeology-museum
+npx --yes --package=github:Biapenam/internet_archaeology_museum internet-archaeology-museum
 ```
 
 The Git installation builds the static site automatically. To build a local npm package instead:

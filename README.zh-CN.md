@@ -72,7 +72,7 @@ npm run verify:dist
 直接从公开的 GitHub 仓库运行（需要 Node.js 20.19+ 和 Git）：
 
 ```bash
-npx --yes --package=github:Biapenam/internet-archaeology-museum internet-archaeology-museum
+npx --yes --package=github:Biapenam/internet_archaeology_museum internet-archaeology-museum
 ```
 
 从 GitHub 安装时会自动构建网页。也可以先生成本地 npm 安装包，再从安装包启动：

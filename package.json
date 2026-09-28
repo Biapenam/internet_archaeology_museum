@@ -16,10 +16,10 @@
   ],
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/Biapenam/internet-archaeology-museum.git"
+    "url": "git+https://github.com/Biapenam/internet_archaeology_museum.git"
   },
-  "homepage": "https://github.com/Biapenam/internet-archaeology-museum#readme",
-  "bugs": "https://github.com/Biapenam/internet-archaeology-museum/issues",
+  "homepage": "https://github.com/Biapenam/internet_archaeology_museum#readme",
+  "bugs": "https://github.com/Biapenam/internet_archaeology_museum/issues",
   "keywords": ["internet-history", "museum", "web-history", "interactive"],
   "engines": {
     "node": ">=20.19.0"
