@@ -520,7 +520,7 @@ function EntityDetail({ entity, onClose, onRelated, copy, language, favorite, on
   const sourceLinks = (entity.sources ?? []).filter((source) => source.url !== website && source.url !== wikipedia)
   const story = artifactStories[entity.id]
   const lifecycle = lifecycleEvidence[entity.id]
-  const correctionUrl = `https://github.com/Biapenam/internet-archaeology-museum-npx/issues/new?${new URLSearchParams({ title: `Correction: ${entity.name} (${entity.id})`, body: `Exhibit ID: ${entity.id}\nWhat needs correction:\nSupporting source:` })}`
+  const correctionUrl = `https://github.com/Biapenam/internet_archaeology_museum/issues/new?${new URLSearchParams({ title: `Correction: ${entity.name} (${entity.id})`, body: `Exhibit ID: ${entity.id}\nWhat needs correction:\nSupporting source:` })}`
   const share = async () => {
     try { await navigator.clipboard.writeText(window.location.href); setCopied(true) }
     catch { setCopied(false) }
