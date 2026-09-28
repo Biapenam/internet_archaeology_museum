@@ -69,7 +69,13 @@ npm run verify:dist
 
 ## 使用 npx 启动
 
-直接从公开的 GitHub 仓库运行（需要 Node.js 20.19+ 和 Git）：
+运行已发布到 npm 的安装包（需要 Node.js 20.19+）：
+
+```bash
+npx --yes internet-archaeology-museum
+```
+
+也可以直接从公开的 GitHub 仓库运行（需要 Git）：
 
 ```bash
 npx --yes --package=github:Biapenam/internet_archaeology_museum internet-archaeology-museum
@@ -82,7 +88,7 @@ npm pack
 npx --yes --package ./internet-archaeology-museum-0.1.0.tgz internet-archaeology-museum
 ```
 
-命令会在 `http://127.0.0.1:4173/` 启动本地服务并打开浏览器；可用 `--port 4182` 指定端口，或用 `--no-open` 仅启动服务。按 Ctrl+C 停止。从 GitHub 安装不需要发布 npm 包；只有另外发布到 npm 仓库后，才能使用简短的 `npx internet-archaeology-museum`。
+命令会在 `http://127.0.0.1:4173/` 启动本地服务并打开浏览器；可用 `--port 4182` 指定端口，或用 `--no-open` 仅启动服务。按 Ctrl+C 停止。
 
 `dist/` 是可以直接发布的静态产物。Vite 使用相对资源路径，因此既能部署在域名根路径，也能部署在 GitHub Pages 这类项目子路径下。把 `dist/` 目录内容上传到 GitHub Pages、Vercel、Netlify 或 Cloudflare Pages 即可，不需要服务器进程。本仓库维护者没有执行外部部署，因此没有可提供的线上演示 URL。项目使用 hash 导航，不需要额外配置 SPA 重写；静态主机只需按常规返回根目录的 `index.html`。
 

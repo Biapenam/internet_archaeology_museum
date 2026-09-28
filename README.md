@@ -67,7 +67,13 @@ npm run verify:dist
 
 ## Run with npx
 
-Run directly from the public GitHub repository (Node.js 20.19+ and Git are required):
+Run the published npm package (Node.js 20.19+ required):
+
+```bash
+npx --yes internet-archaeology-museum
+```
+
+You can also run directly from the public GitHub repository (Git required):
 
 ```bash
 npx --yes --package=github:Biapenam/internet_archaeology_museum internet-archaeology-museum
@@ -80,7 +86,7 @@ npm pack
 npx --yes --package ./internet-archaeology-museum-0.1.0.tgz internet-archaeology-museum
 ```
 
-The command starts a local server at `http://127.0.0.1:4173/` and opens your browser. Use `--port 4182` to choose a port or `--no-open` to keep the browser closed. Press Ctrl+C to stop it. GitHub installation does not require publishing to the npm registry. The shorter command `npx internet-archaeology-museum` requires a separate npm publication.
+The command starts a local server at `http://127.0.0.1:4173/` and opens your browser. Use `--port 4182` to choose a port or `--no-open` to keep the browser closed. Press Ctrl+C to stop it.
 
 `dist/` is a deployable static artifact. The Vite base is relative, so the build works at a domain root and at a project sub-path such as GitHub Pages. Upload the contents of `dist/` to any static host (GitHub Pages, Vercel, Netlify, or Cloudflare Pages); no server process is needed. This repository has not been deployed by the maintainers, so it does not have a live demo URL. If a host does not serve `index.html` for the root request, configure its normal static index behavior. The experience uses hash navigation and does not require an SPA rewrite rule.
 
